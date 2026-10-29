@@ -1,0 +1,407 @@
+/* ===== Base ===== */
+:root {
+    --bg: #0f0c29;
+    --bg-alt: #17133d;
+    --card: rgba(255, 255, 255, 0.06);
+    --text: #e8e6ff;
+    --muted: #a9a5d1;
+    --primary: #7f5af0;
+    --accent: #2cb67d;
+    --pink: #ff6bcb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    background: rgba(15, 12, 41, 0.75);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    animation: slideDown 0.8s ease-out;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.navbar nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 28px;
+    position: relative;
+}
+
+.navbar nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+}
+
+.navbar nav a:hover::after {
+    width: 100%;
+}
+
+/* ===== Hero ===== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 16px;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid var(--primary);
+    border-radius: 50px;
+    color: var(--primary);
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s ease-out both;
+}
+
+.hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s 0.2s ease-out both;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary), var(--pink), var(--accent), var(--primary));
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 6s linear infinite;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 1.15rem;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s 0.4s ease-out both;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 34px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--primary), var(--pink));
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 8px 25px rgba(127, 90, 240, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeUp 0.8s 0.6s ease-out both, pulse 2.5s 1.5s infinite;
+}
+
+.btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(255, 107, 203, 0.5);
+}
+
+/* Floating background blobs */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.55;
+    animation: float 10s ease-in-out infinite;
+}
+
+.blob-1 {
+    width: 420px;
+    height: 420px;
+    background: var(--primary);
+    top: 10%;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 360px;
+    height: 360px;
+    background: var(--pink);
+    bottom: 5%;
+    right: -80px;
+    animation-delay: -5s;
+}
+
+/* ===== Stats ===== */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    padding: 60px 8%;
+    background: var(--bg-alt);
+    text-align: center;
+}
+
+.stat h2 {
+    font-size: 3rem;
+    color: var(--accent);
+}
+
+.stat h2::after {
+    content: "+";
+}
+
+.stat p {
+    color: var(--muted);
+}
+
+/* ===== Sections ===== */
+.section {
+    padding: 90px 8%;
+}
+
+.section.alt {
+    background: var(--bg-alt);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    margin: 12px auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--pink));
+}
+
+/* ===== Cards ===== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 32px 26px;
+    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(127, 90, 240, 0.25);
+}
+
+.card:hover .icon {
+    animation: bounce 0.6s;
+}
+
+.icon {
+    font-size: 2.5rem;
+    margin-bottom: 14px;
+    display: inline-block;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--muted);
+}
+
+/* ===== Tool bars ===== */
+.tools {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.tool {
+    margin-bottom: 24px;
+}
+
+.tool span {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.bar {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    width: 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 1.5s ease-out;
+}
+
+.tool.show .fill {
+    width: var(--w);
+}
+
+/* ===== Schedule table ===== */
+.schedule {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.schedule th,
+.schedule td {
+    padding: 16px 20px;
+    text-align: left;
+}
+
+.schedule th {
+    background: var(--primary);
+}
+
+.schedule tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.3s;
+}
+
+.schedule tbody tr:hover {
+    background: rgba(127, 90, 240, 0.15);
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge.done { background: rgba(44, 182, 125, 0.2); color: var(--accent); }
+.badge.soon { background: rgba(255, 255, 255, 0.1); color: var(--muted); }
+.badge.live {
+    background: rgba(255, 107, 203, 0.2);
+    color: var(--pink);
+    animation: blink 1.5s infinite;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ===== Scroll reveal ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Keyframes ===== */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+}
+
+@keyframes gradientMove {
+    to { background-position: 300% center; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(40px, -40px) scale(1.1); }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 25px rgba(127, 90, 240, 0.4); }
+    50%      { box-shadow: 0 8px 40px rgba(255, 107, 203, 0.7); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    40%      { transform: translateY(-12px); }
+    70%      { transform: translateY(-4px); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+    .navbar nav { display: none; }
+    .schedule th, .schedule td { padding: 12px 10px; font-size: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+}
